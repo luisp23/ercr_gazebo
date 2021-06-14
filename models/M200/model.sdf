@@ -1,0 +1,44 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+	<model name="M200">
+		<pose>0 0 0 0 0 0</pose>
+		<static>false</static>
+
+		<link name="base_link">
+			<inertial>
+				<pose>"0 0 0 0 0 0</pose>
+				<mass>29.0</mass>
+				<!-- Calculated using simple 3D rectangle model-->
+				<inertia> 
+					<ixx>2.417633</ixx>       
+						<ixy>0.0</ixy>         
+						<ixz>0.0</ixz>         
+					<iyy>4.501041</iyy>       
+						<iyz>0.0</iyz>         
+					<izz>6.725341</izz>       
+				</inertia>
+			</inertial>
+
+			<collision name="collision">
+				<pose>"0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>1.35 0.98 0.2</size>
+					</box>
+				</geometry>
+			</collision>
+
+			<visual name='visual'>
+				<pose>"0 0 0.09 1.57079 0 1.57079</pose>
+				<geometry>
+					<mesh>
+						<uri>model://M200/meshes/kingfisher_base.stl</uri>
+					</mesh>
+				</geometry>
+			</visual>
+
+			<gravity>1</gravity>
+
+		</link>
+	</model>
+</sdf>
