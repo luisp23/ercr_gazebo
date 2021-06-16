@@ -1,0 +1,7 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <!--<arg name="world_name" value="$(find kingfisher_gazebo)/worlds/lake_buoy.world"/>-->
+    <arg name="world_name" value="$(find ercr_gazebo)/worlds/water.world"/>
+    <arg name="use_sim_time" value="true"/>
+  </include>
+</launch>
