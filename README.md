@@ -1,7 +1,8 @@
 # ercr_gazebo
 Gazebo simulation package made for the Ecolymer River Cleaning Robot project.
 
-#### Setting Up Gazebo
+### Setting Up Gazebo
+
 ```sh
-source scripts/setup_gazebo.bash
+source scripts/setup_gazebo.bash $(pwd)
 ```

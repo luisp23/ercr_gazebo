@@ -1,0 +1,8 @@
+prefix=/home/luis/ercr_ws/src/ercr_gazebo/build/devel
+
+Name: ercr_gazebo
+Description: Description of ercr_gazebo
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
