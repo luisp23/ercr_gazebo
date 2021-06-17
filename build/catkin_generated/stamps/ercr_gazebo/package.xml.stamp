@@ -10,9 +10,22 @@
 
   <author email="lmpimentel3@gatech.edu">Luis Pimentel</author>
 
-  <depend>roscpp</depend>
-  
   <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>ercr_msgs</build_depend>
+  <build_depend>gazebo</build_depend>
+  <build_depend>gazebo_ros</build_depend>
+
+
+
+  
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>ercr_msgs</exec_depend>
+  <exec_depend>gazebo</exec_depend>
+  <exec_depend>gazebo_ros</exec_depend>
+
+
 
 
   <export>

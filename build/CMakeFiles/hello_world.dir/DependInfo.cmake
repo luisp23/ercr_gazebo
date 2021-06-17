@@ -22,7 +22,9 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "BOOST_THREAD_DYN_LINK"
   "LIBBULLET_VERSION=2.88"
   "LIBBULLET_VERSION_GT_282"
+  "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
+  "ROS_PACKAGE_NAME=\"ercr_gazebo\""
   "hello_world_EXPORTS"
   )
 
@@ -35,6 +37,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/OGRE"
   "/usr/include/OGRE/Terrain"
   "/usr/include/OGRE/Paging"
+  "/home/luis/ercr_ws/devel/.private/ercr_msgs/include"
+  "/opt/ros/noetic/include"
   "/usr/include/simbody"
   "/usr/include/ignition/math6"
   "/usr/include/ignition/transport8"
