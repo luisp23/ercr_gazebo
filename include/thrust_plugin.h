@@ -11,73 +11,74 @@
 #include <ignition/math/Vector3.hh>
 #include <ercr_msgs/Thrust.h>
 
+
+#include "gazebo/transport/transport.hh"
 #include <ros/ros.h>
-// #include <ros/callback_queue.h>
-// #include <ros/advertise_options.h>
+
+
+#include <boost/bind.hpp>
+#include <boost/shared_ptr.hpp>
+
+#include "Thrust.pb.h"
+
+
+
+
+// #include <gazebo/gazebo_client.hh>
 
 namespace gazebo
 {
-  class ThrustPlugin : public ModelPlugin
-  {
 
-    public:
+	typedef const boost::shared_ptr<const ercr_msgs::msgs::Thrust> ThrustPtr;
+
+	class ThrustPlugin : public ModelPlugin
+  	{
+
+    	public:
     	ThrustPlugin(){}
 
         virtual ~ThrustPlugin();
 
-
-
-	
-	protected: 
+		protected: 
 		virtual void Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf);
 
 	
+	
+    	private: 
 
+			physics::ModelPtr model_;
+			physics::WorldPtr world_;
+			physics::LinkPtr link_;
 
-    private: 
+			double cmd_timeout_;
 
-		physics::ModelPtr model_;
-		physics::WorldPtr world_;
-		physics::LinkPtr link_;
+			common::Time prev_update_time_;
+			common::Time last_cmd_drive_time_;  
 
+			double last_cmd_drive_left_;
+			double last_cmd_drive_right_;
 
-		double cmd_timeout_;
-		common::Time prev_update_time_;
-		common::Time last_cmd_drive_time_;  
+			int param_mapping_type_;
+			double param_max_cmd_;
+			double param_max_force_fwd_;
+			double param_max_force_rev_;
+			double param_boat_width_;
+			double param_boat_length_;
+			double param_thrust_z_offset_;
+			
+			std::string node_namespace_;
 
-		double last_cmd_drive_left_;
-		double last_cmd_drive_right_;
+			std::string link_name_;
 
-		int param_mapping_type_;
+			transport::NodePtr node_handle_;
+			transport::SubscriberPtr cmd_drive_sub_;
 
-		/*! Plugin Parameter: Maximum (abs val) of Drive commands. typ. +/-1.0 */
-		double param_max_cmd_;
+			void OnCmdDrive(ThrustPtr &thrust);
 
-		/*! Plugin Parameter: Maximum forward force [N] */
-		double param_max_force_fwd_;
-
-		/*! Plugin Parameter: Maximum reverse force [N] */
-		double param_max_force_rev_;
-
-		/*! Plugin Parameter: Boat width [m] */
-		double param_boat_width_;
-
-		/*! Plugin Parameter: Boat length [m] */
-		double param_boat_length_;
-
-		/*! Plugin Parameter: Z offset for applying forward thrust */
-		double param_thrust_z_offset_;
-		
-
-		std::string node_namespace_;
-		std::string link_name_;
-
-		// ros::NodeHandle *rosnode_;
-		// ros::Subscriber cmd_drive_sub_;
 
 		// event::ConnectionPtr updateConnection;
 		    
-  }; 
+  	}; 
 }
 
 

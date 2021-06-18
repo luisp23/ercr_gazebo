@@ -39,6 +39,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/OGRE/Paging"
   "/home/luis/ercr_ws/devel/.private/ercr_msgs/include"
   "/opt/ros/noetic/include"
+  "msgs"
   "/usr/include/simbody"
   "/usr/include/ignition/math6"
   "/usr/include/ignition/transport8"

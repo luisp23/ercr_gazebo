@@ -19,8 +19,16 @@ ignition/math/Vector3.hh
 -
 ercr_msgs/Thrust.h
 -
+gazebo/transport/transport.hh
+../include/gazebo/transport/transport.hh
 ros/ros.h
 -
+boost/bind.hpp
+-
+boost/shared_ptr.hpp
+-
+Thrust.pb.h
+../include/Thrust.pb.h
 
 /home/luis/ercr_ws/devel/.private/ercr_msgs/include/ercr_msgs/Thrust.h
 string
@@ -16669,4 +16677,32 @@ sdf/sdf_config.h
 /usr/include/sdformat-9.5/sdf/sdf_config.h
 
 /usr/include/sdformat-9.5/sdf/system_util.hh
+
+msgs/Thrust.pb.h
+string
+-
+google/protobuf/stubs/common.h
+-
+google/protobuf/io/coded_stream.h
+-
+google/protobuf/arena.h
+-
+google/protobuf/arenastring.h
+-
+google/protobuf/generated_message_table_driven.h
+-
+google/protobuf/generated_message_util.h
+-
+google/protobuf/inlined_string_field.h
+-
+google/protobuf/metadata.h
+-
+google/protobuf/message.h
+-
+google/protobuf/repeated_field.h
+-
+google/protobuf/extension_set.h
+-
+google/protobuf/unknown_field_set.h
+-
 

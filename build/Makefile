@@ -1272,6 +1272,19 @@ gtest/fast:
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
+#=============================================================================
+# Target rules for targets named ercr_msgs
+
+# Build rule for target.
+ercr_msgs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ercr_msgs
+.PHONY : ercr_msgs
+
+# fast build rule for target.
+ercr_msgs/fast:
+	$(MAKE) -f msgs/CMakeFiles/ercr_msgs.dir/build.make msgs/CMakeFiles/ercr_msgs.dir/build
+.PHONY : ercr_msgs/fast
+
 src/hello_world.o: src/hello_world.cpp.o
 
 .PHONY : src/hello_world.o
@@ -1451,6 +1464,7 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... ercr_msgs"
 	@echo "... src/hello_world.o"
 	@echo "... src/hello_world.i"
 	@echo "... src/hello_world.s"

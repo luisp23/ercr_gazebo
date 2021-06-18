@@ -11,10 +11,8 @@ namespace gazebo {
         model_ = _parent;
         world_ = model_->GetWorld();
 
-
         node_namespace_ = "";
-        cmd_timeout_ = 1.0; // how long to allow no input on cmd_drive
-
+        cmd_timeout_ = 1.0;
         param_mapping_type_ = 0;
         param_max_cmd_ = 1.0;
         param_max_force_fwd_ = 100.0;
@@ -23,20 +21,25 @@ namespace gazebo {
         param_boat_length_ = 1.35;
         param_thrust_z_offset_ = -0.01;
 
-        // prev_update_time_ = last_cmd_drive_time_ = this->world_->GetSimTime();
 
+        node_handle_ = transport::NodePtr(new transport::Node());
+        node_handle_->Init(node_namespace_);
 
-        // Initialize the ROS node and subscribe to cmd_drive
-        // int argc = 0;
-        // char** argv = NULL;
+        cmd_drive_sub_ = node_handle_->Subscribe("cmd_drive", &ThrustPlugin::OnCmdDrive, this);
 
-        // ros::init(argc, argv, "thrust_plugin", ros::init_options::NoSigintHandler|ros::init_options::AnonymousName);
-        // rosnode_ = new ros::NodeHandle(node_namespace_);
-        // cmd_drive_sub_ = rosnode_->subscribe("cmd_drive", 1, &UsvThrust::OnCmdDrive, this);
 
     }
 
+    void ThrustPlugin::OnCmdDrive(ThrustPtr &thrust){
 
+        // last_cmd_drive_time_ = this->world_->GetSimTime();
+        last_cmd_drive_left_ = thrust->left();
+        last_cmd_drive_right_ = thrust->right();
+
+        std::cout << last_cmd_drive_left_ << std::endl; 
+        std::cout << last_cmd_drive_right_ << std::endl; 
+        
+    }
 
 
 

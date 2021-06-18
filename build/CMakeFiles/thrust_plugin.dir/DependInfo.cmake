@@ -39,6 +39,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/OGRE/Paging"
   "/home/luis/ercr_ws/devel/.private/ercr_msgs/include"
   "/opt/ros/noetic/include"
+  "msgs"
   "/usr/include/simbody"
   "/usr/include/ignition/math6"
   "/usr/include/ignition/transport8"
@@ -53,6 +54,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
+  "/home/luis/ercr_ws/src/ercr_gazebo/build/msgs/CMakeFiles/ercr_msgs.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

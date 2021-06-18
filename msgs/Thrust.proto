@@ -1,0 +1,8 @@
+syntax = "proto2";
+package ercr_msgs.msgs;
+
+message Thrust
+{
+  required float  left    = 1;
+  required float  right   = 2;
+}

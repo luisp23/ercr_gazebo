@@ -57,11 +57,13 @@ all: CMakeFiles/model_push.dir/all
 all: CMakeFiles/thrust_plugin.dir/all
 all: CMakeFiles/hello_world.dir/all
 all: gtest/all
+all: msgs/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
 preinstall: gtest/preinstall
+preinstall: msgs/preinstall
 
 .PHONY : preinstall
 
@@ -148,6 +150,7 @@ clean: CMakeFiles/gazebo_msgs_generate_messages_eus.dir/clean
 clean: CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/clean
 clean: CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/clean
 clean: gtest/clean
+clean: msgs/clean
 
 .PHONY : clean
 
@@ -209,13 +212,31 @@ gtest/googletest/clean: gtest/googletest/CMakeFiles/gtest.dir/clean
 .PHONY : gtest/googletest/clean
 
 #=============================================================================
+# Directory level rules for directory msgs
+
+# Recursive "all" directory target.
+msgs/all: msgs/CMakeFiles/ercr_msgs.dir/all
+
+.PHONY : msgs/all
+
+# Recursive "preinstall" directory target.
+msgs/preinstall:
+
+.PHONY : msgs/preinstall
+
+# Recursive "clean" directory target.
+msgs/clean: msgs/CMakeFiles/ercr_msgs.dir/clean
+
+.PHONY : msgs/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/model_push.dir
 
 # All Build rule for target.
 CMakeFiles/model_push.dir/all:
 	$(MAKE) -f CMakeFiles/model_push.dir/build.make CMakeFiles/model_push.dir/depend
 	$(MAKE) -f CMakeFiles/model_push.dir/build.make CMakeFiles/model_push.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=11,12 "Built target model_push"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=14,15 "Built target model_push"
 .PHONY : CMakeFiles/model_push.dir/all
 
 # Build rule for subdir invocation for target.
@@ -492,14 +513,15 @@ CMakeFiles/thrust_plugin.dir/all: CMakeFiles/ercr_msgs_generate_messages_py.dir/
 CMakeFiles/thrust_plugin.dir/all: CMakeFiles/ercr_msgs_generate_messages_eus.dir/all
 CMakeFiles/thrust_plugin.dir/all: CMakeFiles/ercr_msgs_generate_messages_cpp.dir/all
 CMakeFiles/thrust_plugin.dir/all: CMakeFiles/std_msgs_generate_messages_eus.dir/all
+CMakeFiles/thrust_plugin.dir/all: msgs/CMakeFiles/ercr_msgs.dir/all
 	$(MAKE) -f CMakeFiles/thrust_plugin.dir/build.make CMakeFiles/thrust_plugin.dir/depend
 	$(MAKE) -f CMakeFiles/thrust_plugin.dir/build.make CMakeFiles/thrust_plugin.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=13,14 "Built target thrust_plugin"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=16,17 "Built target thrust_plugin"
 .PHONY : CMakeFiles/thrust_plugin.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/thrust_plugin.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/thrust_plugin.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles 0
 .PHONY : CMakeFiles/thrust_plugin.dir/rule
@@ -1817,7 +1839,7 @@ CMakeFiles/tf_generate_messages_nodejs.dir/clean:
 CMakeFiles/hello_world.dir/all:
 	$(MAKE) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/depend
 	$(MAKE) -f CMakeFiles/hello_world.dir/build.make CMakeFiles/hello_world.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=9,10 "Built target hello_world"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=12,13 "Built target hello_world"
 .PHONY : CMakeFiles/hello_world.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2412,7 +2434,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googlemock/CMakeFiles/gmoc
 gtest/googlemock/CMakeFiles/gmock_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock_main.dir/build.make gtest/googlemock/CMakeFiles/gmock_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=3,4 "Built target gmock_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=6,7 "Built target gmock_main"
 .PHONY : gtest/googlemock/CMakeFiles/gmock_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2439,7 +2461,7 @@ gtest/googlemock/CMakeFiles/gmock_main.dir/clean:
 gtest/googlemock/CMakeFiles/gmock.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/depend
 	$(MAKE) -f gtest/googlemock/CMakeFiles/gmock.dir/build.make gtest/googlemock/CMakeFiles/gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=1,2 "Built target gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=4,5 "Built target gmock"
 .PHONY : gtest/googlemock/CMakeFiles/gmock.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2466,7 +2488,7 @@ gtest/googlemock/CMakeFiles/gmock.dir/clean:
 gtest/googletest/CMakeFiles/gtest_main.dir/all: gtest/googletest/CMakeFiles/gtest.dir/all
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest_main.dir/build.make gtest/googletest/CMakeFiles/gtest_main.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=7,8 "Built target gtest_main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=10,11 "Built target gtest_main"
 .PHONY : gtest/googletest/CMakeFiles/gtest_main.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2493,7 +2515,7 @@ gtest/googletest/CMakeFiles/gtest_main.dir/clean:
 gtest/googletest/CMakeFiles/gtest.dir/all:
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/depend
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=5,6 "Built target gtest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=8,9 "Built target gtest"
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/all
 
 # Build rule for subdir invocation for target.
@@ -2512,6 +2534,33 @@ gtest: gtest/googletest/CMakeFiles/gtest.dir/rule
 gtest/googletest/CMakeFiles/gtest.dir/clean:
 	$(MAKE) -f gtest/googletest/CMakeFiles/gtest.dir/build.make gtest/googletest/CMakeFiles/gtest.dir/clean
 .PHONY : gtest/googletest/CMakeFiles/gtest.dir/clean
+
+#=============================================================================
+# Target rules for target msgs/CMakeFiles/ercr_msgs.dir
+
+# All Build rule for target.
+msgs/CMakeFiles/ercr_msgs.dir/all:
+	$(MAKE) -f msgs/CMakeFiles/ercr_msgs.dir/build.make msgs/CMakeFiles/ercr_msgs.dir/depend
+	$(MAKE) -f msgs/CMakeFiles/ercr_msgs.dir/build.make msgs/CMakeFiles/ercr_msgs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles --progress-num=1,2,3 "Built target ercr_msgs"
+.PHONY : msgs/CMakeFiles/ercr_msgs.dir/all
+
+# Build rule for subdir invocation for target.
+msgs/CMakeFiles/ercr_msgs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles 3
+	$(MAKE) -f CMakeFiles/Makefile2 msgs/CMakeFiles/ercr_msgs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/luis/ercr_ws/src/ercr_gazebo/build/CMakeFiles 0
+.PHONY : msgs/CMakeFiles/ercr_msgs.dir/rule
+
+# Convenience name for target.
+ercr_msgs: msgs/CMakeFiles/ercr_msgs.dir/rule
+
+.PHONY : ercr_msgs
+
+# clean rule for target.
+msgs/CMakeFiles/ercr_msgs.dir/clean:
+	$(MAKE) -f msgs/CMakeFiles/ercr_msgs.dir/build.make msgs/CMakeFiles/ercr_msgs.dir/clean
+.PHONY : msgs/CMakeFiles/ercr_msgs.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

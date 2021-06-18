@@ -647,3 +647,4 @@ CMakeFiles/thrust_plugin.dir/src/thrust_plugin.cpp.o
  /usr/include/sdformat-9.5/sdf/sdf.hh
  /usr/include/sdformat-9.5/sdf/sdf_config.h
  /usr/include/sdformat-9.5/sdf/system_util.hh
+ msgs/Thrust.pb.h

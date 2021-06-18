@@ -111,3 +111,11 @@
 /home/luis/ercr_ws/src/ercr_gazebo/build/gtest/googletest/CMakeFiles/test.dir
 /home/luis/ercr_ws/src/ercr_gazebo/build/gtest/googletest/CMakeFiles/gtest_main.dir
 /home/luis/ercr_ws/src/ercr_gazebo/build/gtest/googletest/CMakeFiles/gtest.dir
+/home/luis/ercr_ws/src/ercr_gazebo/build/msgs/CMakeFiles/install/local.dir
+/home/luis/ercr_ws/src/ercr_gazebo/build/msgs/CMakeFiles/install.dir
+/home/luis/ercr_ws/src/ercr_gazebo/build/msgs/CMakeFiles/list_install_components.dir
+/home/luis/ercr_ws/src/ercr_gazebo/build/msgs/CMakeFiles/rebuild_cache.dir
+/home/luis/ercr_ws/src/ercr_gazebo/build/msgs/CMakeFiles/edit_cache.dir
+/home/luis/ercr_ws/src/ercr_gazebo/build/msgs/CMakeFiles/test.dir
+/home/luis/ercr_ws/src/ercr_gazebo/build/msgs/CMakeFiles/install/strip.dir
+/home/luis/ercr_ws/src/ercr_gazebo/build/msgs/CMakeFiles/ercr_msgs.dir
