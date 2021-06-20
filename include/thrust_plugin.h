@@ -86,6 +86,9 @@ namespace gazebo
 
 			transport::NodePtr node_handle_;
 			transport::SubscriberPtr cmd_drive_sub_;
+			
+			ros::NodeHandle *rosnode_;
+    		ros::Subscriber cmd_drive_sub_ros;
 
 			ignition::math::Pose3d pose_; 
 
@@ -93,8 +96,8 @@ namespace gazebo
 			double glf(double x, float A, float K, float B, float v, float C, float M);
 			double glfThrustCmd(double cmd);
 			void OnCmdDrive(ThrustPtr &thrust);
+			void OnCmdDriveRos(const ercr_msgs::ThrustConstPtr &thrust);
 			event::ConnectionPtr updateConnection_;
-		    
   	}; 
 }
 

@@ -43,10 +43,9 @@
 
 		<!-- <plugin name="model_push" filename="libmodel_push.so"/> -->
 		<plugin name='thrust_plugin' filename='libthrust_plugin.so'>
-			<!-- <linkName>'base_link'</linkName> -->
 
 			<!-- Which thruster curve to use -->
-			<mappingType>1</mappingType>
+			<mappingType>0</mappingType>
 
 			<!-- General dimensions -->
 			<boatWidth>2.4</boatWidth>
@@ -55,8 +54,8 @@
 
 			<!-- Thrust specification -->
 			<maxCmd>1.0</maxCmd>
-			<maxForceFwd>250.0</maxForceFwd>
-			<maxForceRev>-100.0</maxForceRev>
+			<maxForceFwd>175.0</maxForceFwd>
+			<maxForceRev>-150.0</maxForceRev>
 			<cmdTimeout>1.0</cmdTimeout>
 
 		</plugin>

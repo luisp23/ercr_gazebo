@@ -56,10 +56,18 @@ namespace gazebo {
             gzerr << "[thrust_plugin] Please specify the command timeout.\n";
 
 
+        // Transport node for gazebo transport library commands
         node_handle_ = transport::NodePtr(new transport::Node());
         node_handle_->Init(node_namespace_);
+        cmd_drive_sub_ = node_handle_->Subscribe("/cmd_drive", &ThrustPlugin::OnCmdDrive, this);
 
-        cmd_drive_sub_ = node_handle_->Subscribe("cmd_drive", &ThrustPlugin::OnCmdDrive, this);
+        // ROS node to subscribe to ROS topic
+        int argc = 0;
+        char** argv = NULL;
+        ros::init(argc, argv, "thrust_plugin", ros::init_options::NoSigintHandler|ros::init_options::AnonymousName);
+        rosnode_ = new ros::NodeHandle(node_namespace_);
+
+        cmd_drive_sub_ros = rosnode_->subscribe("/cmd_drive", 1, &ThrustPlugin::OnCmdDriveRos, this);
 
         //  Enumerating model
         ROS_INFO_STREAM("Enumerating Model...");
@@ -75,7 +83,6 @@ namespace gazebo {
         
         // Listen to the update event. This event is broadcast every simulation iteration.
         updateConnection_ = event::Events::ConnectWorldUpdateBegin(boost::bind(&ThrustPlugin::OnUpdate, this));
-
     }
 
 
@@ -131,6 +138,14 @@ namespace gazebo {
     }
 
 
+    void ThrustPlugin::OnCmdDriveRos(const ercr_msgs::ThrustConstPtr &thrust)
+    {
+        last_cmd_drive_time_ = world_->SimTime();
+        
+        last_cmd_drive_left_ = thrust->left;
+        last_cmd_drive_right_ = thrust->right;
+    }
+
     void ThrustPlugin::OnUpdate()
     {        
         common::Time time_now = world_->SimTime();
@@ -140,9 +155,8 @@ namespace gazebo {
         double dcmd = (time_now - last_cmd_drive_time_).Double();
         if ( (dcmd > cmd_timeout_) && (cmd_timeout_ > 0.0))
         {
-            // ROS_INFO_STREAM_THROTTLE(1.0,"Command timeout!");
-            // last_cmd_drive_left_ = 0.0;
-            // last_cmd_drive_right_ = 0.0;
+            last_cmd_drive_left_ = 0.0;
+            last_cmd_drive_right_ = 0.0;
         }
 
         double thrust_left = 0.0;
