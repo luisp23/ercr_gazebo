@@ -14,8 +14,6 @@ catkin_package(
   DEPENDS 
 )
 
-
-
 include_directories(
     include
     ${GAZEBO_INCLUDE_DIRS}
@@ -23,8 +21,6 @@ include_directories(
     ${Boost_INCLUDE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}/msgs
 )
-
-
 
 link_libraries(
   ${Boost_SYSTEM_LIBRARY_RELEASE}
@@ -42,20 +38,9 @@ link_directories(
 
 add_subdirectory(msgs)
 
-
 list(APPEND CMAKE_CXX_FLAGS "${GAZEBO_CXX_FLAGS}")
 
-
-# Test dummy plugins
-add_library(hello_world SHARED src/hello_world.cpp)
-target_link_libraries(hello_world ${GAZEBO_LIBRARIES})
-
-add_library(model_push SHARED src/model_push.cpp)
-target_link_libraries(model_push ${GAZEBO_LIBRARIES})
-
-
 # Thrust plugin 
-
 add_library(thrust_plugin SHARED src/thrust_plugin.cpp)
 
 target_link_libraries(thrust_plugin 
