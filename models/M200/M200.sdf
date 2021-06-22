@@ -1,12 +1,12 @@
-<?xml version='1.0'?>
+<?xml version="1.0"?>
 <sdf version="1.4">
 	<model name="M200">
 		<pose>0 0 0 0 0 0</pose>
 		<static>false</static>
 
-		<link name='base_link'>
+		<link name="base_link">
 			<inertial>
-				<pose>"0 0 0 0 0 0</pose>
+				<pose>0 0 0 0 0 0</pose>
 				<mass>29.0</mass>
 				<!-- Calculated using simple 3D rectangle model-->
 				<inertia> 
@@ -19,7 +19,7 @@
 				</inertia>
 			</inertial>
 
-			<collision name='collision'>
+			<collision name="collision">
 				<pose>"0 0 0 0 0 0</pose>
 				<geometry>
 					<box>
@@ -28,7 +28,7 @@
 				</geometry>
 			</collision>
 
-			<visual name='visual'>
+			<visual name="visual">
 				<pose>"0 0 0.09 1.57079 0 1.57079</pose>
 				<geometry>
 					<mesh>
@@ -41,8 +41,48 @@
 
 		</link>
 
-		<!-- <plugin name="model_push" filename="libmodel_push.so"/> -->
-		<plugin name='thrust_plugin' filename='libthrust_plugin.so'>
+		<!-- IMU Sensor-->
+		<link name="imu_link">
+			<inertial>
+				<pose>0 0 0 0 0 0</pose>
+				<mass>1e-5</mass>
+				<inertia> 
+					<ixx>1e-6</ixx>       
+						<ixy>0.0</ixy>         
+						<ixz>0.0</ixz>         
+					<iyy>1e-6</iyy>       
+						<iyz>0.0</iyz>         
+					<izz>1e-6</izz>       
+				</inertia>
+			</inertial>
+
+			<collision name="collision">
+				<pose>0 0 0 0 0 0</pose>
+				<geometry>
+					<box>
+						<size>0.1 0.1 0.1</size>
+					</box>
+				</geometry>
+			</collision>
+
+
+			<sensor name="imu" type="imu">
+				<pose>0 0 0 0 0 0</pose>
+				<always_on>1</always_on>
+				<update_rate>1000</update_rate>
+			</sensor>
+
+    	</link>
+
+			
+		<joint name="imu_joint" type="fixed">
+
+			<parent>base_link</parent>
+			<child>imu_link</child>
+			<pose>0 0 0.079226 0 0 0</pose>	
+		</joint>
+
+		<plugin name="thrust_plugin" filename="libthrust_plugin.so">
 
 			<!-- Which thruster curve to use -->
 			<mappingType>0</mappingType>
@@ -57,7 +97,9 @@
 			<maxForceFwd>175.0</maxForceFwd>
 			<maxForceRev>-150.0</maxForceRev>
 			<cmdTimeout>1.0</cmdTimeout>
+		</plugin>
 
+		<plugin name="sensors_plugin" filename="libsensors_plugin.so">
 		</plugin>
 
 	</model>
