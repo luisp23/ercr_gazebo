@@ -68,13 +68,11 @@ namespace gazebo {
 
 
 
-
     void SensorsPlugin::OnUpdate()
     {        
         ignition::math::Quaterniond _orientation =	pImuSensor_->Orientation(); 
         ignition::math::Vector3d _angularVelocity = pImuSensor_->AngularVelocity();
         ignition::math::Vector3d _linearAcceleration = pImuSensor_->LinearAcceleration();
-
 
 
         // TODO: Figure out how to extract/computer the covariance matrices associated with this plugin
