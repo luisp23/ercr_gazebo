@@ -21,19 +21,22 @@
 
 #include <gazebo/sensors/sensors.hh>
 #include "sensor_msgs/Imu.h"
+#include "sensor_msgs/NavSatFix.h"
+
 
 namespace gazebo
 {
-
+	static constexpr double defaultImuPubRate = 1000.0; 
+	static constexpr double defaultGpsPubRate = 10.0;
 	
 
 
 	class SensorsPlugin : public ModelPlugin
   	{
-
     	public:
-			SensorsPlugin(){
-                
+			SensorsPlugin():
+				imu_pub_rate_(defaultImuPubRate),
+				gps_pub_rate_(defaultGpsPubRate){
 			}
 
         virtual ~SensorsPlugin();
@@ -51,24 +54,34 @@ namespace gazebo
 			std::string node_namespace_;
 			std::string link_name_;
 
-			
+
+			double imu_pub_rate_, gps_pub_rate_;
+
             sensors::SensorPtr pGetImuSensor_; 
             sensors::ImuSensorPtr pImuSensor_;
+
+			sensors::SensorPtr pGetGpsSensor_; 
+            sensors::GpsSensorPtr pGpsSensor_;
              
-            
-            
-            
-            
-            
             transport::NodePtr node_handle_;
 			transport::SubscriberPtr cmd_drive_sub_;
 			
 			ros::NodeHandle *rosnode_;
-            ros::Publisher ros_imu_pub_; 
-            
-            sensor_msgs::Imu imu_msg_; 
+
+			ros::Timer imu_timer_;
+			ros::Timer gps_timer_;
+
+            ros::Publisher ros_imu_pub_;
+			ros::Publisher ros_gps_pub_;
+
+            sensor_msgs::Imu imu_msg_;
+			sensor_msgs::NavSatFix gps_msg_;  
+
+			void imuPublishCallback(const ros::TimerEvent &event);
+			void gpsPublishCallback(const ros::TimerEvent &event);
 
 			event::ConnectionPtr updateConnection_;
+		
   	}; 
 }
 

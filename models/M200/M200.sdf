@@ -66,7 +66,7 @@
 			</collision>
 
 
-			<sensor name="imu" type="imu">
+			<sensor name="imu_sensor" type="imu">
 				<pose>0 0 0 0 0 0</pose>
 				<always_on>1</always_on>
 				<update_rate>1000</update_rate>
@@ -111,6 +111,7 @@
 				<pose>0 0 0 0 0 0</pose>
 				<always_on>1</always_on>
 				<update_rate>5</update_rate>
+				<topic>gps_ros_topic</topic>
 			</sensor>
 
     	</link>
@@ -120,11 +121,6 @@
 			<child>gps_link</child>
 			<pose>0.158613 0 0.079226 0 0 0</pose>	
 		</joint>
-
-
-
-
-
 
 		<plugin name="thrust_plugin" filename="libthrust_plugin.so">
 
@@ -144,6 +140,8 @@
 		</plugin>
 
 		<plugin name="sensors_plugin" filename="libsensors_plugin.so">
+			<imuPubRate>250.0</imuPubRate>
+			<gpsPubRate>10.0</gpsPubRate>
 		</plugin>
 
 	</model>
