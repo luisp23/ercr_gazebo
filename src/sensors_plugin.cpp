@@ -69,9 +69,7 @@ namespace gazebo {
 
 
             // TODO: Add magnetometer sensor
-            
-
-
+        
 
         }
 

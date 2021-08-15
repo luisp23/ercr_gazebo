@@ -71,3 +71,18 @@ target_link_libraries(sensors_plugin
 add_dependencies(sensors_plugin
   ${catkin_EXPORTED_TARGETS}
 )
+
+
+############ Dynamics plugin ###################################
+###############################################################
+add_library(dynamics_plugin SHARED src/dynamics_plugin.cpp)
+
+target_link_libraries(dynamics_plugin 
+  ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
+  ${Boost_LIBRARIES}
+)
+
+add_dependencies(dynamics_plugin
+  ${catkin_EXPORTED_TARGETS}
+)
