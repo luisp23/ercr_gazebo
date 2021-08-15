@@ -6,6 +6,10 @@
 #include <gazebo/physics/physics.hh>
 #include <gazebo/common/common.hh>
 
+#include <ignition/math.hh>
+
+#include <Eigen/Core>
+
 #include <ignition/math/Vector3.hh>
 
 #include "gazebo/transport/transport.hh"
@@ -13,6 +17,10 @@
 
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
+
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2/LinearMath/Transform.h>
+
 
 // #include <gazebo/gazebo_client.hh>
 
@@ -73,6 +81,7 @@ namespace gazebo
 		protected: 
 			virtual void Load(physics::ModelPtr _parent, sdf::ElementPtr _sdf);
 			virtual void OnUpdate();
+
 	
     	private: 
 
@@ -82,9 +91,7 @@ namespace gazebo
 
 			std::string link_name_;
 
-
-			double water_level_; 
-			double water_density_; 
+			std::string node_namespace_;
 
 			/*! Plugin Parameter: Added mass in surge, X_\dot{u} */
 			double param_X_dot_u_;
@@ -121,7 +128,65 @@ namespace gazebo
 			/*! Plugin Parameter: Metacentric width[m] */
 			double param_metacentric_width_;
 
+			double xyz_damping_;
+			double yaw_damping_;
+			double rp_damping_;
+
+			/* Water height [m]*/
+			double water_level_;
+			/* Water density [kg/m^3] */
+			double water_density_;
+
+			common::Time prev_update_time_;
+
+			/*! Added mass matrix, 6x6 */
+			Eigen::MatrixXd Ma_;
+
+			ignition::math::Vector3d prev_lin_vel_;
+			ignition::math::Vector3d prev_ang_vel_;
+			ignition::math::Pose3d pose_;
+			ignition::math::Vector3d euler_;
+			ignition::math::Vector3d vel_linear_body_;
+			ignition::math::Vector3d vel_angular_body_;
+			ignition::math::Vector3d acceleration;
+			ignition::math::Vector3d angular_velocity_;
+			ignition::math::Vector3d angular_acceleration_;
+			
+			Eigen::VectorXd state_dot_;
+			Eigen::VectorXd state_;
+			Eigen::VectorXd amassVec_;
+			Eigen::MatrixXd Cmat_;
+			Eigen::VectorXd Cvec_;
+			Eigen::MatrixXd Dmat_;
+			Eigen::VectorXd Dvec_;
+
+			// For Buoyancy calculation
+			float buoy_frac_;
+			float dx_;
+			float dy_;
+			std::vector<int> II_;
+
+			/* Wave parameters */
+			int param_wave_n_;
+			std::vector<float> param_wave_amps_;
+			std::vector<float> param_wave_periods_;
+			std::vector< std::vector<float> > param_wave_directions_;
+
+
+			ros::NodeHandle *rosnode_;
+			boost::thread *spinner_thread_;
+
+
+
+
+    		void spin(); 
+
+
+
+
+			// Pointer to the update event connection
 			event::ConnectionPtr updateConnection_;
+
   	}; 
 }
 
