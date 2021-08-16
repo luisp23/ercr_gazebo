@@ -87,8 +87,8 @@ namespace gazebo {
         imu_timer_ = rosnode_->createTimer(ros::Duration(1/imu_pub_rate_), &SensorsPlugin::imuPublishCallback, this);
         gps_timer_ = rosnode_->createTimer(ros::Duration(1/gps_pub_rate_), &SensorsPlugin::gpsPublishCallback, this);
 
-        ros_imu_pub_ = rosnode_->advertise<sensor_msgs::Imu>("/imu", 1);
-        ros_gps_pub_ = rosnode_->advertise<sensor_msgs::NavSatFix>("/gps", 1);
+        ros_imu_pub_ = rosnode_->advertise<sensor_msgs::Imu>("imu/data", 1);
+        ros_gps_pub_ = rosnode_->advertise<sensor_msgs::NavSatFix>("gps/fix", 1);
 
         // Not needed
         // updateConnection_ = event::Events::ConnectWorldUpdateBegin(boost::bind(&SensorsPlugin::OnUpdate, this));
@@ -127,7 +127,9 @@ namespace gazebo {
         imu_msg_.linear_acceleration_covariance = {0,0,0,0,0,0,0,0,0};
 
         // Publish the messages
-        imu_msg_.header.stamp = ros::Time::now(); 
+        imu_msg_.header.stamp = ros::Time::now();
+        imu_msg_.header.frame_id = "imu_link";
+        
         ros_imu_pub_.publish(imu_msg_);
     }
 
@@ -145,7 +147,9 @@ namespace gazebo {
         gps_msg_.position_covariance = {0,0,0,0,0,0,0,0,0};
         gps_msg_.position_covariance_type = sensor_msgs::NavSatFix::COVARIANCE_TYPE_UNKNOWN;   
 
-        gps_msg_.header.stamp = ros::Time::now(); 
+        gps_msg_.header.stamp = ros::Time::now();
+        gps_msg_.header.frame_id = "gps_link"; 
+
         ros_gps_pub_.publish(gps_msg_);
     }
 
